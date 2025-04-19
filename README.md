@@ -1,0 +1,1 @@
+This a web quiz app that uses vanilla html,css,java script on the front end
