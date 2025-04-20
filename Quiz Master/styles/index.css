@@ -17,8 +17,13 @@ header img {
     gap: 5px;
     align-items: center;
 }
+nav {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+}
 button{
-    background-color: #b83333;
+    background-color: #f5f5f5;
     border: none;
     cursor: pointer;
     font-size: 1.2rem;
@@ -27,4 +32,9 @@ button{
     border-radius: 5px;
     transition: all 0.3s ease-in-out;
     
+}
+button:hover{
+    background-color: #7b81d5;
+    color: #fff;
+    border-radius: 10px;
 }
