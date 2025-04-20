@@ -7,5 +7,7 @@ cards.forEach(card => {
         title.textContent = card.dataset.category;
     });
 
-
+    card.addEventListener('mouseout', () => {
+        title.textContent = defaultText;
+    });
 });
