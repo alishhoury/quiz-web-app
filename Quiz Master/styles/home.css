@@ -1,0 +1,21 @@
+.cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.card img {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1rem;
+}
