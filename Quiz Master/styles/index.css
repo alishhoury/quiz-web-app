@@ -26,7 +26,7 @@ button:hover{
 }
 main {
     display: flex;
-    flex-direction: column; /* Stack vertically on mobile */
+    flex-direction: column; 
     justify-content: center;
     align-items: center;
     padding: 1rem;
@@ -36,7 +36,7 @@ main {
 }
 
 aside {
-    flex: none; /* Remove flex grow */
+    flex: none; 
     width: 100%;
     padding: 1rem;
     margin-bottom: 2rem;
