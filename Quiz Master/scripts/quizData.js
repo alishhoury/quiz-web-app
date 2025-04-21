@@ -17,3 +17,4 @@ const quizzes ={
         }
     ]
 }
+localStorage.setItem('quizData', JSON.stringify(quizzes));
