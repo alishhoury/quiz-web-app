@@ -8,11 +8,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const scoresList = document.getElementById('scoresList');
     const logoutBtn = document.getElementById('logoutBtn');
 
-    // Load and display all scores
     function displayScores() {
+        // Get scores from localStorage
         const scores = JSON.parse(localStorage.getItem('scores') || '{}');
-        scoresList.innerHTML = '';
+        scoresList.innerHTML = ''; // Clear previous content
 
+        // Check if there are any scores
+        if (Object.keys(scores).length === 0) {
+            scoresList.innerHTML = '<p>No scores available yet.</p>';
+            return;
+        }
+
+        // Display scores for each user
         Object.entries(scores).forEach(([username, userScores]) => {
             const userDiv = document.createElement('div');
             userDiv.className = 'user-scores';

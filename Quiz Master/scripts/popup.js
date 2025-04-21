@@ -39,7 +39,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
 
-        // Get existing users 
+        // Prevent registration with admin username
+        if (username.toLowerCase() === 'admin') {
+            alert('Username "admin" is reserved. Please choose a different username.');
+            return;
+        }
+
+        // Get existing users or initialize empty array
         const users = JSON.parse(localStorage.getItem('users') || '[]');
         
         // Check if username already exists
