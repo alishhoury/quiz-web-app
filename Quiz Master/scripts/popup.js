@@ -95,3 +95,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+loginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const username = document.getElementById('loginUsername').value;
+    const password = document.getElementById('loginPassword').value;
+
+if (username === 'admin' && password === 'admin') {
+    localStorage.setItem('isAdmin', 'true');
+    window.location.href = './pages/dashboard.html';
+    return;
+}
+const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const user = users.find(u => u.username === username && u.password === password);
+
+    if (user) {
+        localStorage.setItem('currentUser', username);
+        loginForm.reset();
+        loginPopup.style.display = 'none';
+        window.location.href = './pages/home.html';
+    } else {
+        alert('Invalid username or password!');
+    }
+});
