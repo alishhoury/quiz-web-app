@@ -1,34 +1,97 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Get DOM elements
+    const loginBtn = document.querySelector('nav button:nth-child(1)');
     const registerBtn = document.querySelector('nav button:nth-child(2)');
-    const popup = document.getElementById('registerPopup');
-    const closeBtn = document.querySelector('.close-btn');
+    const loginPopup = document.getElementById('loginPopup');
+    const registerPopup = document.getElementById('registerPopup');
+    const closeBtns = document.querySelectorAll('.close-btn');
+    const loginForm = document.getElementById('loginForm');
     const registerForm = document.getElementById('registerForm');
 
+    // Show popups
+    loginBtn.addEventListener('click', () => {
+        loginPopup.style.display = 'block';
+    });
+
     registerBtn.addEventListener('click', () => {
-        popup.style.display = 'block';
+        registerPopup.style.display = 'block';
     });
 
-    closeBtn.addEventListener('click', () => {
-        popup.style.display = 'none';
+    // Close popups
+    closeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            loginPopup.style.display = 'none';
+            registerPopup.style.display = 'none';
+        });
     });
 
+    // Close on outside click
     window.addEventListener('click', (e) => {
-        if (e.target === popup) {
-            popup.style.display = 'none';
+        if (e.target === loginPopup || e.target === registerPopup) {
+            loginPopup.style.display = 'none';
+            registerPopup.style.display = 'none';
         }
     });
 
+    // Handle registration
     registerForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
 
+        // Get existing users 
         const users = JSON.parse(localStorage.getItem('users') || '[]');
+        
+        // Check if username already exists
+        if (users.some(user => user.username === username)) {
+            alert('Username already exists!');
+            return;
+        }
+
+        // Add new user
         users.push({ username, password });
         localStorage.setItem('users', JSON.stringify(users));
 
+        // Clear form and close popup
         registerForm.reset();
-        popup.style.display = 'none';
+        registerPopup.style.display = 'none';
         alert('Registration successful!');
     });
+
+    // Handle login
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const username = document.getElementById('loginUsername').value;
+        const password = document.getElementById('loginPassword').value;
+
+        // Get users from localStorage
+        const users = JSON.parse(localStorage.getItem('users') || '[]');
+        
+        // Check password and username
+        const user = users.find(u => u.username === username && u.password === password);
+
+        if (user) {
+            // Store logged in user
+            localStorage.setItem('currentUser', username);
+            
+            // Clear form and close popup
+            loginForm.reset();
+            loginPopup.style.display = 'none';
+            
+            // Redirect to quiz page
+            window.location.href = './pages/home.html';
+        } else {
+            alert('Invalid username or password!');
+        }
+    });
+
+    // Check if user is logged in
+    const currentUser = localStorage.getItem('currentUser');
+    if (currentUser) {
+        loginBtn.textContent = `Logout (${currentUser})`;
+        loginBtn.addEventListener('click', () => {
+            localStorage.removeItem('currentUser');
+            window.location.reload();
+        });
+    }
 });
