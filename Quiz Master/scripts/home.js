@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
 const cards = document.querySelectorAll('.card');
 const title = document.getElementById('categoryTitle');
@@ -19,5 +18,10 @@ cards.forEach(card => {
         localStorage.setItem('selectedCategory', category);
         window.location.href = 'quiz.html';
     });
+});
+
+const returnBtn = document.getElementById('returnBtn');
+returnBtn.addEventListener('click', () => {
+    window.location.href = '../index.html';
 });
 });

@@ -52,3 +52,31 @@ h2{
     text-align: center;
     transition: all 0.3s ease;
 }
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+nav {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.returnBtn {
+    padding: 10px 20px;
+    background-color: #7e81e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-right: 20px;
+}
+
+.returnBtn:hover {
+    background-color: #6366ca;
+    transform: translateY(-2px);
+}

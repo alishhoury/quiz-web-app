@@ -44,44 +44,35 @@ document.addEventListener('DOMContentLoaded', () => {
         nextBtn.disabled = false;
     }
 
+    function saveScore(score) {
+        const currentUser = localStorage.getItem('currentUser');
+        if (!currentUser) return;
+
+        const scores = JSON.parse(localStorage.getItem('scores') || '{}');
+        
+        if (!scores[currentUser]) {
+            scores[currentUser] = [];
+        }
+        
+        scores[currentUser].push({
+            category: category,
+            score: score,
+            date: new Date().toISOString()
+        });
+        
+        localStorage.setItem('scores', JSON.stringify(scores));
+    }
+
     nextBtn.addEventListener('click', () => {
         currentQuestion++;
         if (currentQuestion < quizData.length) {
             loadQuestion();
         } else {
+            saveScore(score);
             alert(`Quiz completed! Your score: ${score}/3`);
             window.location.href = 'home.html';
         }
     });
 
     loadQuestion();
-});
-function saveScore(score) {
-    const currentUser = localStorage.getItem('currentUser');
-    if (!currentUser) return;
-
-    const scores = JSON.parse(localStorage.getItem('scores') || '{}');
-    
-    if (!scores[currentUser]) {
-        scores[currentUser] = [];
-    }
-    
-    scores[currentUser].push({
-        category: category,
-        score: score,
-        date: new Date().toISOString()
-    });
-    
-    localStorage.setItem('scores', JSON.stringify(scores));
-}
-
-nextBtn.addEventListener('click', () => {
-    currentQuestion++;
-    if (currentQuestion < quizData.length) {
-        loadQuestion();
-    } else {
-        saveScore(score);
-        alert(`Quiz completed! Your score: ${score}/3`);
-        window.location.href = 'home.html';
-    }
 });
