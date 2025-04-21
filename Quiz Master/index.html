@@ -31,6 +31,23 @@
         <img src="./assets/nobg.png" alt="Quiz Master" />
       </figure>
     </main>
+    <div class="popup" id="loginPopup">
+      <div class="popup-content">
+        <span class="close-btn">&times;</span>
+        <h2>Login</h2>
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="loginUsername">Username:</label>
+            <input type="text" id="loginUsername" required />
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Password:</label>
+            <input type="password" id="loginPassword" required />
+          </div>
+          <button type="submit" class="submit-btn">Login</button>
+        </form>
+      </div>
+    </div>
     <div class="popup" id="registerPopup">
       <div class="popup-content">
         <span class="close-btn">&times;</span>
@@ -48,5 +65,6 @@
         </form>
       </div>
     </div>
+    <script src="./scripts/popup.js"></script>
   </body>
 </html>
